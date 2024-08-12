@@ -32,6 +32,8 @@ vim.keymap.set("n", "<C-.>", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap
 vim.keymap.set("n", "<leader>er", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>ds", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>nt", "<cmd>Neotree toggle<CR>",  { noremap = true, silent = true})
+vim.keymap.set("n", "<leader>f", "<cmd>:Format<CR>",  { noremap = true, silent = true})
+vim.keymap.set("n", "<leader>F", "<cmd>:FormatWrite<CR>",  { noremap = true, silent = true})
 
 --- Hyprlang LSP
 vim.api.nvim_create_autocmd({'BufEnter', 'BufWinEnter'}, {

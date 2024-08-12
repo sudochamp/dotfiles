@@ -16,7 +16,15 @@ return {
 				ensure_installed = {},
 				handlers = {
 					function(server_name)
-						require('lspconfig')[server_name].setup({})
+						require('lspconfig')[server_name].setup({
+ 							settings = {
+								Lua = {
+									diagnostics = {
+										globals = {'vim'},
+									},
+								},
+							},
+						})
 					end,
 				},
 				settings = {
