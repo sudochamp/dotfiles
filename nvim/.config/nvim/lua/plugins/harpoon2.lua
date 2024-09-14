@@ -12,7 +12,7 @@ return {
 			-- vim.keymap.set("n", "<C-l>", function () harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 			vim.keymap.set("n", "<leader>nn", function () harpoon:list():next() end)
 			vim.keymap.set("n", "<leader>np", function () harpoon:list():prev() end)
-			vim.keymap.set("n", "<C-S-D>", function ()
+			vim.keymap.set("n", "<leader>cl", function ()
 				harpoon:list():clear()
 				vim.notify("Harpoon files cleared")
 			end)

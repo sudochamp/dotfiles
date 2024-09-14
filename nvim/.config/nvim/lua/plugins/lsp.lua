@@ -1,106 +1,105 @@
 return {
 	--- Uncomment the two plugins below if you want to manage the language servers from neovim
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		config = function ()
-			local lsp_zero = require('lsp-zero')
-			lsp_zero.extend_lspconfig()
+	{ "williamboman/mason.nvim" },
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("mason").setup({})
+		end,
+	},
 
-			lsp_zero.on_attach(function(client, bufnr)
-				lsp_zero.default_keymaps({buffer = bufnr})
-			end)
-			require('mason').setup({})
-			require('mason-lspconfig').setup({
-				ensure_installed = {},
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v4.x",
+		config = function()
+			local lsp_zero = require("lsp-zero")
+
+			local lsp_attach = function(client, bufnr)
+				lsp_zero.default_keymaps({ buffer = bufnr })
+			end
+
+			lsp_zero.extend_lspconfig({
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+				lsp_attach = lsp_attach,
+				float_border = "rounded",
+				sign_text = true,
+			})
+
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "rust_analyzer", "biome" },
 				handlers = {
 					function(server_name)
-						require('lspconfig')[server_name].setup({
- 							settings = {
+						if server_name == "tsserver" then
+							server_name = "ts_ls"
+						end
+						require("lspconfig")[server_name].setup({
+							settings = {
 								Lua = {
 									diagnostics = {
-										globals = {'vim'},
+										globals = { "vim" },
 									},
 								},
 							},
 						})
 					end,
 				},
-				settings = {
-					typescript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-					},
-					javascript = {
-						inlayHints = {
-							includeInlayParameterNameHints = "all",
-							includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-							includeInlayFunctionParameterTypeHints = true,
-							includeInlayVariableTypeHints = true,
-							includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-							includeInlayPropertyDeclarationTypeHints = true,
-							includeInlayFunctionLikeReturnTypeHints = true,
-							includeInlayEnumMemberValueHints = true,
-						},
-					},
-				}
-
 			})
-			--- require('lspconfig').lua_ls.setup({})
 		end,
 	},
-	{'neovim/nvim-lspconfig'},
-	{'hrsh7th/cmp-nvim-lsp'},
-	{'hrsh7th/nvim-cmp',
-		config = function ()
-			local cmp = require('cmp')
+	{ "neovim/nvim-lspconfig" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{
+		"hrsh7th/nvim-cmp",
+		config = function()
+			local cmp = require("cmp")
+			local cmp_action = require("lsp-zero").cmp_action()
 			cmp.setup({
-				preselect = 'item',
+				preselect = "item",
 				completion = {
-					completeopt = 'menu,menuone,noinsert',
-					autocomplete = false
+					completeopt = "menu,menuone,noinsert",
+					autocomplete = false,
 				},
 				sources = {
-					{name = 'nvim_lsp'},
+					{ name = "nvim_lsp" },
+					{ name = "supermaven" },
 				},
-				mapping = {
-					['<CR>'] = cmp.mapping.confirm({select = false}),
-					['<C-e>'] = cmp.mapping.abort(),
-					['<Up>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
-					['<Down>'] = cmp.mapping.select_next_item({behavior = 'select'}),
-					['<C-p>'] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.select_prev_item({behavior = 'insert'})
-						else
-							cmp.complete()
-						end
-					end),
-					['<C-n>'] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.select_next_item({behavior = 'insert'})
-						else
-							cmp.complete()
-						end
-					end),
-					['<C-Space>'] = cmp.mapping.complete(),
-				},
+				mapping = cmp.mapping.preset.insert({
+					["<Tab>"] = cmp_action.luasnip_supertab(),
+					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+					["<CR>"] = cmp.mapping.confirm({ select = false }),
+					["<C-Space>"] = cmp.mapping.complete(),
+					-- ['<C-e>'] = cmp.mapping.abort(),
+					-- ['<Up>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
+					-- ['<Down>'] = cmp.mapping.select_next_item({behavior = 'select'}),
+					-- ['<C-p>'] = cmp.mapping(function()
+					-- 	if cmp.visible() then
+					-- 		cmp.select_prev_item({behavior = 'insert'})
+					-- 	else
+					-- 		cmp.complete()
+					-- 	end
+					-- end),
+					-- ['<C-n>'] = cmp.mapping(function()
+					-- 	if cmp.visible() then
+					-- 		cmp.select_next_item({behavior = 'insert'})
+					-- 	else
+					-- 		cmp.complete()
+					-- 	end
+					-- end),
+					-- ['<C-Space>'] = cmp.mapping.complete(),
+				}),
 				snippet = {
 					expand = function(args)
-						require('luasnip').lsp_expand(args.body)
+						require("luasnip").lsp_expand(args.body)
 					end,
 				},
 			})
 		end,
 	},
-	{'L3MON4D3/LuaSnip'},
+	{ "L3MON4D3/LuaSnip" },
+	{
+		"VidocqH/lsp-lens.nvim",
+		config = function()
+			require("lsp-lens").setup({})
+		end,
+	},
 }
-

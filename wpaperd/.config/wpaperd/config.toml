@@ -1,5 +1,5 @@
 [default]
-duration = "30m"
+duration = "10m"
 sorting = "random"
 mode = "center"
 
