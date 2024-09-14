@@ -113,8 +113,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /home/ibrahim/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # zoxide
 eval "$(zoxide init zsh)"
 alias cd=z
@@ -133,7 +131,7 @@ alias nuke="sudo rm -rfI" # not really a nuke if it asks for confirmation but i'
 [ "$(tty)" = "/dev/tty1" ] && Hyprland
 
 # bun completions
-[ -s "/home/ibrahim/.bun/_bun" ] && source "/home/ibrahim/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -151,4 +149,4 @@ source /home/ibrahim/.config/broot/launcher/bash/br
 
 
 # Created by `pipx` on 2024-09-12 13:17:53
-export PATH="$PATH:/home/ibrahim/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
