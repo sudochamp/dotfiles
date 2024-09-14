@@ -61,8 +61,8 @@ button:hover {
   /*    box-shadow: inset 0 -2px #c9545d; */
   background-color: rgba(0,0,0,0.3);
 				/* background-color: #407ADD; */
-  color:#c9545d;
-  border-top: 2px solid #c9545d;
+  color:#407ADD;
+  border-top: 2px solid #407ADD;
 }
 
 #workspaces button.urgent {
