@@ -48,11 +48,13 @@ return {
 	},
 	{ "neovim/nvim-lspconfig" },
 	{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-buffer" },
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
 			local cmp_action = require("lsp-zero").cmp_action()
+			local cmp_format = require("lsp-zero").cmp_format({ details = true })
 			cmp.setup({
 				preselect = "item",
 				completion = {
@@ -62,12 +64,11 @@ return {
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "supermaven" },
+					{ name = "buffer" },
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<Tab>"] = cmp_action.luasnip_supertab(),
-					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
-					["<C-Space>"] = cmp.mapping.complete(),
 					-- ['<C-e>'] = cmp.mapping.abort(),
 					-- ['<Up>'] = cmp.mapping.select_prev_item({behavior = 'select'}),
 					-- ['<Down>'] = cmp.mapping.select_next_item({behavior = 'select'}),
@@ -92,6 +93,7 @@ return {
 						require("luasnip").lsp_expand(args.body)
 					end,
 				},
+				formatting = cmp_format,
 			})
 		end,
 	},

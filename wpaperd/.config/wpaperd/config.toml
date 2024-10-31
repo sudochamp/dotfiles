@@ -5,8 +5,8 @@ mode = "center"
 
 # Widescreen 3440x1440
 [DP-3]
-path = "/home/ibrahim/.config/backgrounds/"
+path = "/home/ibrahim/.config/backgrounds/Alpstein.png"
 
-# Full HD+ 1920x1200
+# 1920x1200
 [DP-2]
-path = "/home/ibrahim/.config/backgrounds/"
+path = "/home/ibrahim/.config/backgrounds/Alpstein.png"

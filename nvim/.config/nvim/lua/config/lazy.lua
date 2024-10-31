@@ -21,7 +21,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
-vim.keymap.set("n", "<leader>pv", "<cmd>Oil<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>ex", "<cmd>Oil<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 vim.cmd([[set nu]])
@@ -32,11 +32,20 @@ vim.cmd([[set tabstop=2]])
 
 vim.keymap.set("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>er", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>ds", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>nt", "<cmd>Neotree toggle<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>f", "<cmd>:Format<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>F", "<cmd>:FormatWrite<CR>", { noremap = true, silent = false })
-vim.keymap.set("n", "<C-x>", "<cmd>:silent if &rl <Bar> set rl! <Bar> else <Bar> set rl <Bar> endif<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-x>", "<cmd>:set termbidi<CR>", { noremap = true, silent = true })
+
+--- Link nvim to system clipboard
+--- Copy
+vim.keymap.set("v", "<leader>y", '"+y', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>Y", '"+yg', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>y", '"+yy', { noremap = true, silent = true })
+--- Paste
+vim.keymap.set("n", "<leader>p", '"+p', { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>P", '"+P', { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>p", '"+p', { noremap = true, silent = true })
+vim.keymap.set("v", "<leader>P", '"+P', { noremap = true, silent = true })
 
 --- Hyprlang LSP
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
@@ -61,5 +70,5 @@ require("lazy").setup({
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "catppuccin" } },
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = { enabled = false },
 })

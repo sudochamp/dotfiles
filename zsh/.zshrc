@@ -117,7 +117,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(zoxide init zsh)"
 alias cd=z
 
-alias ls="ls -lah --color=auto"
+alias ls="ls --color=auto"
 
 # neovim
 export EDITOR="nvim"
@@ -137,6 +137,9 @@ alias nuke="sudo rm -rfI" # not really a nuke if it asks for confirmation but i'
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$ANDROID_HOME:$PATH"
+
 alias tws="GDK_BACKEND=x11 ib-tws"
 alias ib-tws="GDK_BACKEND=x11 ib-tws"
 
@@ -150,3 +153,14 @@ source /home/ibrahim/.config/broot/launcher/bash/br
 
 # Created by `pipx` on 2024-09-12 13:17:53
 export PATH="$PATH:$HOME/.local/bin"
+
+
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Temporary fix so I can build Expo apps locally
+unset ANDROID_SDK_ROOT
+
+# conda
+# eval "$(/home/ibrahim/miniconda3/bin/conda shell.zsh hook)"
+
+eval $(thefuck --alias)

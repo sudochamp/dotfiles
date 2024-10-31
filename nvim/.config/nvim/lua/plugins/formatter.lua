@@ -7,16 +7,8 @@ return {
 			require("formatter").setup({
 				logging = false,
 				filetype = {
-					javascript = {
-						function()
-							return {
-								exe = "prettierd",
-								args = { vim.api.nvim_buf_get_name(0) },
-								stdin = true,
-							}
-						end,
-					},
 					typescriptreact = {
+
 						function()
 							return {
 								exe = "prettierd",
@@ -25,15 +17,7 @@ return {
 							}
 						end,
 					},
-					typescript = {
-						function()
-							return {
-								exe = "prettierd",
-								args = { vim.api.nvim_buf_get_name(0) },
-								stdin = true,
-							}
-						end,
-					},
+
 					lua = {
 						require("formatter.filetypes.lua").stylua,
 
@@ -51,14 +35,8 @@ return {
 							}
 						end,
 					},
-					svelte = {
-						function()
-							return {
-								exe = "prettierd",
-								args = { vim.api.nvim_buf_get_name(0) },
-								stdin = true,
-							}
-						end,
+					["*"] = {
+						require("formatter.filetypes.any").remove_trailing_whitespace,
 					},
 				},
 			})
