@@ -26,7 +26,7 @@ return {
 			})
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "rust_analyzer", "biome" },
+				ensure_installed = { "lua_ls", "rust_analyzer" },
 				handlers = {
 					function(server_name)
 						if server_name == "tsserver" then

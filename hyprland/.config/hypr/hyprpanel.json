@@ -1,0 +1,21 @@
+{
+  "0": {
+    "left": ["dashboard", "workspaces", "windowtitle"],
+    "middle": ["media"],
+    "right": ["volume", "cputemp", "clock", "notifications"]
+  },
+  "1": {
+    "left": ["dashboard", "workspaces", "windowtitle"],
+    "middle": ["media"],
+    "right": [
+      "volume",
+      "cputemp",
+      "network",
+      "bluetooth",
+      "battery",
+      "systray",
+      "clock",
+      "notifications"
+    ]
+  }
+}

@@ -29,12 +29,13 @@ vim.cmd([[set relativenumber]])
 vim.cmd([[set numberwidth=4]])
 vim.cmd([[set scrolloff=15]])
 vim.cmd([[set tabstop=2]])
+vim.cmd([[set shiftwidth=2]])
+vim.cmd([[set expandtab]])
 
 vim.keymap.set("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>er", "<cmd>lua vim.diagnostic.open_float()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>f", "<cmd>:Format<CR>", { noremap = true, silent = false })
 vim.keymap.set("n", "<leader>F", "<cmd>:FormatWrite<CR>", { noremap = true, silent = false })
-vim.keymap.set("n", "<C-x>", "<cmd>:set termbidi<CR>", { noremap = true, silent = true })
 
 --- Link nvim to system clipboard
 --- Copy

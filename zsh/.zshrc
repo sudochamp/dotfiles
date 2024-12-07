@@ -151,16 +151,13 @@ setopt COMBINING_CHARS
 source /home/ibrahim/.config/broot/launcher/bash/br
 
 
-# Created by `pipx` on 2024-09-12 13:17:53
 export PATH="$PATH:$HOME/.local/bin"
-
-
 export PATH="$PATH:$HOME/.cargo/bin"
 
 # Temporary fix so I can build Expo apps locally
 unset ANDROID_SDK_ROOT
 
-# conda
-# eval "$(/home/ibrahim/miniconda3/bin/conda shell.zsh hook)"
 
 eval $(thefuck --alias)
+
+alias rstb="sh ~/.config/system-scripts/reset-brightness.sh"
